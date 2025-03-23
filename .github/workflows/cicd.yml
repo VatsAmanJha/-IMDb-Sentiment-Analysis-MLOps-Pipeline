@@ -44,7 +44,6 @@ jobs:
     steps:
       - name: Start Codespace and Deploy Services
         run: |
-          gh codespace create -r ${{ github.repository }} -b main
           gh codespace ports forward 8000:8000 5000:5000
           docker-compose up -d
         env:
