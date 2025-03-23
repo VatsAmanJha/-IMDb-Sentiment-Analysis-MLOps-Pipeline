@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/Codeing/DataSci/MlOps/imdb_sentiment_analysis/mlruns/868622668807011970/91dc392ef6b347bca9ce9977c0e5159a/artifacts
+end_time: 1742747644442
+entry_point_name: ''
+experiment_id: '868622668807011970'
+lifecycle_stage: active
+run_id: 91dc392ef6b347bca9ce9977c0e5159a
+run_name: salty-hound-590
+run_uuid: 91dc392ef6b347bca9ce9977c0e5159a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1742747616484
+status: 3
+tags: []
+user_id: vatsa

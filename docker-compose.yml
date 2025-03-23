@@ -1,0 +1,50 @@
+version: "3.8"
+
+services:
+  mlflow-server:
+    build:
+      context: .
+      dockerfile: MLflowDockerfile
+    container_name: mlflow-server
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./mlruns:/mlruns
+      - ./mlflow.db:/mlflow.db
+    environment:
+      - MLFLOW_TRACKING_URI=http://0.0.0.0:8000
+      - MLFLOW_BACKEND_STORE_URI=sqlite:///mlflow.db
+      - MLFLOW_ARTIFACT_ROOT=/mlruns
+    command: >
+      mlflow server --backend-store-uri sqlite:///mlflow.db --default-artifact-root /mlruns --host 0.0.0.0 --port 8000
+    restart: always
+
+  dvc-pipeline:
+    build:
+      context: .
+      dockerfile: DVCPipelineDockerfile
+    container_name: dvc-pipeline
+    depends_on:
+      - mlflow-server
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow-server:8000
+    command: ["dvc", "repro"]
+
+  sentiment-api:
+    build:
+      context: .
+      dockerfile: apiDockerfile
+    container_name: sentiment-api
+    depends_on:
+      - mlflow-server
+      - dvc-pipeline
+    ports:
+      - "5000:5000"
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow-server:8000
+    command: ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "5000"]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000"]
+      interval: 10s
+      timeout: 5s
+      retries: 3

@@ -1,0 +1,15 @@
+cmd: python src/data_extraction.py
+deps:
+- path: data/raw/dataset.zip
+  hash: md5
+  md5: 709abc8880b3c3e0d9bbfeebcd9d33b2
+  size: 26962657
+- path: src/data_extraction.py
+  hash: md5
+  md5: 86c541cace144d5e435f395d29ea04c9
+  size: 470
+outs:
+- path: data/raw/extracted/IMDB Dataset.csv
+  hash: md5
+  md5: 308443a50e5c993e7b8a1cdb95750026
+  size: 66212309

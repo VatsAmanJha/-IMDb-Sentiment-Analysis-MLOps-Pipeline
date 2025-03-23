@@ -1,0 +1,30 @@
+{
+  "dataframe_split": {
+    "columns": [
+      "review",
+      "sentiment"
+    ],
+    "data": [
+      [
+        "christma stori holiday classic favorit movi natur elat movi came saw open day prepar enjoy came away revolt digust anticip rang true christma stori curious miss mess red ryder bb gun better get chines topand funni charl grodin good buck stop bottom line star even bother",
+        0
+      ],
+      [
+        "review contain spoilerth movi american ninja mysteri train martial art fall colonel daughter turn hate grunt post peopl hero end film film extrem cheesi poorli research good folk care plot develop realiti good kid militari error film comic rememb three year militari us privat requir salut call nco sir film variou spot colonel hair way long ear master sergent moustach militari protocol length post colonel offic around one offic shown walk around post idiot ninja brandsh sword troop ms rather poorli madefolk film reek michael dudikoff realli bad actor lousi script ninja hilari danger avoid film",
+        0
+      ],
+      [
+        "embarrass remak wed singer happen favorit movi give anoth reason disapprov film plot joke charact jeez peopl need origin",
+        0
+      ],
+      [
+        "one strang selfimport selfindulg movi tri hard profound instead spout clich tri pass profund typic scene peter kelsey grammer explain protagonist best friend adam dwier brown man start life breast feed move suck breast girlfriend final wife thu conclud ultim life suck deep treat varieti charact offer perspect life univers etc adam travel mojav desert foot abruptli leav la day wed famili friend fianc assum he dead car found militari test rang smash rocket charact entertain other best far escape mental hospit speak voic other actor jame kevin ward great impress includ nicholson popey sever charact origin star trek interest charact leav screen stuck adam pursuit profound long trip drag mani place fact longest hour half movi ever seen final hardli make seem worth alli discov movi play hbo one day wake earli click tv learn next time ill tri harder sleep",
+        0
+      ],
+      [
+        "gregori peck brilliant portray dougla macarthur battl corregidor philippin start pacif war larg remov un command korean war offer reason believ three possibl certainli controversi american gener second world war possibl ever macarthur present man massiv contradict claim soldier yearn peac yet obvious glori war consist deni polit ambit yet almost everyth deliber use boost presidenti candid obvious believ soldier command follow order letter yet deliber defi order presid unit state show great respect cultur particularli philippin japan yet complet touch countri thing held balanc throughout movi end viewer left draw conclus man although one left doubt macarthur sincer passion love countri especi armi devot life topeck perform said brilliant point actual overshadow virtual everyon els film perhap appropri given portray possibl except ed flander though offer compel look harri truman attitud macarthur sarcast repeatedli refer macarthur majesti angri frustrat final complet fed gener simpli respect author presid marj dusay also intrigu macarhur wife jean devot husband refer gener although relationship seem happi enough one much enjoy movi although perhap would like learn littl macarthur earli life alway chuckl macarthur reaction eisenhow elect presid hell make fine presid best damn clerk ever seem sum macarthur thought role presid especi militari command wartim well worth watch",
+        1
+      ]
+    ]
+  }
+}

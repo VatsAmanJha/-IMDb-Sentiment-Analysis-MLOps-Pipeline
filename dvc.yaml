@@ -1,0 +1,55 @@
+stages:
+  data_extraction:
+    cmd: python src/data_extraction.py
+    deps:
+      - data/raw/dataset.zip
+      - src/data_extraction.py
+    outs:
+      - data/raw/extracted/IMDB Dataset.csv
+
+  data_ingestion_and_cleaning:
+    cmd: python src/data_ingestion_and_cleaning.py
+    deps:
+      - data/raw/extracted/IMDB Dataset.csv
+      - src/data_ingestion_and_cleaning.py
+    outs:
+      - data/clean/clean_dataset.csv
+
+  train:
+    cmd: python src/model_training.py
+    deps:
+      - src/model_training.py
+      - src/feature_engineering.py # Explicitly adding the preprocessing script
+      - data/clean/clean_dataset.csv
+    params:
+      - training.n_estimators
+      - training.random_state
+      - feature_engineering.vocab_size
+      - data_split.test_size
+    outs:
+      - models/model.pkl
+
+  evaluate:
+    cmd: python src/model_evaluation.py
+    deps:
+      - models/model.pkl
+      - src/model_evaluation.py
+    metrics:
+      - reports/models/metrics.json:
+          cache: false
+
+  register_model:
+    cmd: python src/register_model.py
+    deps:
+      - models/model.pkl
+      - models/vectorizer.pkl
+      - reports/models/metrics.json
+    always_changed: true
+
+  load_best_model:
+    cmd: python src/load_model.py
+    deps:
+      - src/load_model.py
+    outs:
+      - models/best_model.pkl
+    always_changed: true

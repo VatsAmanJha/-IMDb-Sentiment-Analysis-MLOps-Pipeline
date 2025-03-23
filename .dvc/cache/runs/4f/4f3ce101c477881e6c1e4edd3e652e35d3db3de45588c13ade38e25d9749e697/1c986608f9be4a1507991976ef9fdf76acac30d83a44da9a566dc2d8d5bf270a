@@ -1,0 +1,15 @@
+cmd: python src/data_ingestion_and_cleaning.py
+deps:
+- path: data/raw/extracted/IMDB Dataset.csv
+  hash: md5
+  md5: 308443a50e5c993e7b8a1cdb95750026
+  size: 66212309
+- path: src/data_ingestion_and_cleaning.py
+  hash: md5
+  md5: abc76d771a618cfc8e15ea8611130eec
+  size: 681
+outs:
+- path: data/clean/clean_dataset.csv
+  hash: md5
+  md5: e96894dd74d3d4dd03ce1919727bff85
+  size: 36607064

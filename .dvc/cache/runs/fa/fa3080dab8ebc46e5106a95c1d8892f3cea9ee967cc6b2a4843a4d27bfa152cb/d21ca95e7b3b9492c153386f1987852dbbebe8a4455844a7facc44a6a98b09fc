@@ -1,0 +1,25 @@
+cmd: python src/model_training.py
+deps:
+- path: data/clean/clean_dataset.csv
+  hash: md5
+  md5: e96894dd74d3d4dd03ce1919727bff85
+  size: 36607064
+- path: src/feature_engineering.py
+  hash: md5
+  md5: 9b7d26d839fbd2d346cd011cf4079e6c
+  size: 869
+- path: src/model_training.py
+  hash: md5
+  md5: e17a0071fb777daf7397d3a70309e8c1
+  size: 789
+params:
+  params.yaml:
+    data_split.test_size: 0.2
+    feature_engineering.vocab_size: 5000
+    training.n_estimators: 50
+    training.random_state: 42
+outs:
+- path: models/model.pkl
+  hash: md5
+  md5: 0d1639849fd2ea6694d785ea2729497d
+  size: 49700297

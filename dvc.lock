@@ -1,0 +1,103 @@
+schema: '2.0'
+stages:
+  data_extraction:
+    cmd: python src/data_extraction.py
+    deps:
+    - path: data/raw/dataset.zip
+      hash: md5
+      md5: 709abc8880b3c3e0d9bbfeebcd9d33b2
+      size: 26962657
+    - path: src/data_extraction.py
+      hash: md5
+      md5: 86c541cace144d5e435f395d29ea04c9
+      size: 470
+    outs:
+    - path: data/raw/extracted/IMDB Dataset.csv
+      hash: md5
+      md5: 308443a50e5c993e7b8a1cdb95750026
+      size: 66212309
+  data_ingestion_and_cleaning:
+    cmd: python src/data_ingestion_and_cleaning.py
+    deps:
+    - path: data/raw/extracted/IMDB Dataset.csv
+      hash: md5
+      md5: 308443a50e5c993e7b8a1cdb95750026
+      size: 66212309
+    - path: src/data_ingestion_and_cleaning.py
+      hash: md5
+      md5: abc76d771a618cfc8e15ea8611130eec
+      size: 681
+    outs:
+    - path: data/clean/clean_dataset.csv
+      hash: md5
+      md5: e96894dd74d3d4dd03ce1919727bff85
+      size: 36607064
+  train:
+    cmd: python src/model_training.py
+    deps:
+    - path: data/clean/clean_dataset.csv
+      hash: md5
+      md5: e96894dd74d3d4dd03ce1919727bff85
+      size: 36607064
+    - path: src/feature_engineering.py
+      hash: md5
+      md5: 9b7d26d839fbd2d346cd011cf4079e6c
+      size: 869
+    - path: src/model_training.py
+      hash: md5
+      md5: e17a0071fb777daf7397d3a70309e8c1
+      size: 789
+    params:
+      params.yaml:
+        data_split.test_size: 0.2
+        feature_engineering.vocab_size: 5000
+        training.n_estimators: 5
+        training.random_state: 42
+    outs:
+    - path: models/model.pkl
+      hash: md5
+      md5: 6ac3b1723c57dcc02a8052d2a46d4c6c
+      size: 4912937
+  evaluate:
+    cmd: python src/model_evaluation.py
+    deps:
+    - path: models/model.pkl
+      hash: md5
+      md5: 6ac3b1723c57dcc02a8052d2a46d4c6c
+      size: 4912937
+    - path: src/model_evaluation.py
+      hash: md5
+      md5: c1fab10e3d0358f952ed82cc456fcef3
+      size: 659
+    outs:
+    - path: reports/models/metrics.json
+      hash: md5
+      md5: 489afb215217dbdd3e25459f6203ab4e
+      size: 20
+  register_model:
+    cmd: python src/register_model.py
+    deps:
+    - path: models/model.pkl
+      hash: md5
+      md5: 6ac3b1723c57dcc02a8052d2a46d4c6c
+      size: 4912937
+    - path: models/vectorizer.pkl
+      hash: md5
+      md5: 32561641e2df7bca5cd3f50dbc274e86
+      size: 159180
+    - path: reports/models/metrics.json
+      hash: md5
+      md5: 489afb215217dbdd3e25459f6203ab4e
+      size: 20
+  load_best_model:
+    cmd: python src/load_model.py
+    deps:
+    - path: src/load_model.py
+      hash: md5
+      md5: 611db026617fc772346af07be48c3a04
+      size: 1386
+    outs:
+    - path: models/best_model.pkl
+      hash: md5
+      md5: e4e434653ba3ff4a44a686e9da48eda6
+      size: 4913033
